@@ -62,9 +62,15 @@ void solve(float[] modify, float[] modify0, float a, float c, int percision) {
            modify[IX(x + 1, y)] +
            modify[IX(x - 1, y)] +
            modify[IX(x, y + 1)] +
-           modify[IX(x, y + 1)])
+           modify[IX(x, y - 1)])
          ) / c /*(1 + 4.0f * diff_rate_dt)*/;
       }
     // fluid_set_boundaries(fluid_target, width, height);
   }
+}
+
+float a;
+
+void tick(float dt) {
+  float a = dt * diff * (size - 2) * (size - 2);
 }

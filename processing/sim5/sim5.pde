@@ -18,6 +18,8 @@ FluidCell getCell(int x, int y) {
   return null;
 }
 
+getCell(x, y);
+
 class FluidCell {
   int posX, posX0;
   int posY, posY0;

@@ -131,16 +131,16 @@ class FluidField {
 
         if (x < 0.5f) x = 0.5f;
         if (x > Nfloat - 0.5f) x = Nfloat - 0.5f;
-        i0 = floor(x);
-        i1 = i0 + 1.0f;
+        i0 = floor(x); // L
+        i1 = i0 + 1.0f; // R
         if (y < 0.5f) y = 0.5f;
         if (y > Nfloat - 0.5f) y = Nfloat - 0.5f;
-        j0 = floor(y);
-        j1 = j0 + 1.0f;
+        j0 = floor(y); // B
+        j1 = j0 + 1.0f; // T
 
-        // offset to the right side of the cell
-        s1 = x - i0;
         // offset to the left side of the cell
+        s1 = x - i0;
+        // offset to the right side of the cell
         s0 = 1.0f - s1;
         // offset to the bottom side of the cell
         t1 = y - j0;
@@ -196,7 +196,7 @@ class FluidField {
 }
 
 final int SIZE = 100;
-final int ITER = 10;
+final int ITER = 50;
 float scale = 5.0f;
 
 FluidField fluid = new FluidField(SIZE, ITER, 0.0001, 0.0001, 0.01);
@@ -209,11 +209,21 @@ void setup() {
 void draw() {
   fluid.step();
   
+  float s = 0;
+  for (int i = 0; i < fluid.density.length; i++) {
+    s += fluid.density[i];
+  }
+  
+  println(s);
+  
   background(51);
   for (int y = 0; y < fluid.size; y++) {
     for (int x = 0; x < fluid.size; x++) {
+      noStroke();
       fill(255, 255, 255, fluid.density[fluid.IX(x, y)] / 10);
       rect(x * scale, y * scale, scale, scale);
+      stroke(0, 0, 255);
+      line(x * scale, y * scale, scale * (x + fluid.Vx[fluid.IX(x, y)]), scale * (y + fluid.Vy[fluid.IX(x, y)]));
     }
   }
 }

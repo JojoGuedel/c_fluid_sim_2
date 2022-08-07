@@ -4,3 +4,6 @@ https://lucasschuermann.com/writing/particle-based-fluid-simulation
 http://www.georgebit.com/images/articles/programming/euler/downloads/Liviu-George_Bitiusca_-_Eulerian_Fluid_Simulator.pdf
 https://www.youtube.com/watch?v=ERBVFcutl3M
 https://mikeash.com/pyblog/fluid-simulation-for-dummies.html
+
+// might be usefull
+https://link.springer.com/chapter/10.1007/978-3-319-71598-8_27
