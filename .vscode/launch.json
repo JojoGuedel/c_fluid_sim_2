@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "run (debug)",
+            "type": "lldb",
+            "request": "launch",
+            "preLaunchTask": "build_debug",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal",
+
+            "windows": {
+                "program": "${workspaceFolder}/out/windows/${workspaceFolderBasename}.exe",
+            },
+            "linux": {
+                "program": "${workspaceFolder}/out/linux/${workspaceFolderBasename}",
+            },
+            "program": ""
+        },
+        {
+            "name": "run (release)",
+            "type": "lldb",
+            "request": "launch",
+            "preLaunchTask": "build_release",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal",
+
+            "windows": {
+                "program": "${workspaceFolder}/out/windows/${workspaceFolderBasename}.exe",
+            },
+            "linux": {
+                "program": "${workspaceFolder}/out/linux/${workspaceFolderBasename}",
+            },
+            "program": ""
+        },
+    ]
+}

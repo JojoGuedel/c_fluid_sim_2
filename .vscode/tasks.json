@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build_debug",
+            "group": "build",
+            "type": "shell",
+            "command": "python",
+            "args": ["${workspaceFolder}/build.py", "build", "d"],
+            "problemMatcher": []
+        },
+        {
+            "label": "build_release",
+            "group": "build",
+            "type": "shell",
+            "command": "python",
+            "args": ["${workspaceFolder}/build.py", "build", "r"],
+            "problemMatcher": []
+
+        }
+    ]
+}
