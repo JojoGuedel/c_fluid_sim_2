@@ -118,9 +118,10 @@ class FluidChunk {
         PVector sPos = toScreen(new PVector(pos.x + x, pos.y + y));
 
         noStroke();
-        fill(255, 255, 255, cell.dens);
+        fill(0, 0, 0, cell.dens);
         rect(sPos.x, sPos.y, 1 / scale, 1 / scale);
-
+        
+        strokeWeight(2);
         if(cell.state == State.inactive)
           stroke(255, 0, 0);
         else if (cell.state == State.passive)

@@ -130,7 +130,7 @@ def build_cmd(program: str, src_files: list[str], inc_path: str = None, out_path
 class Win:
     @staticmethod
     def build(debug):
-        src_files = [f"{workspace_dir.full_path()}/src/*.c"]
+        src_files = [f"{workspace_dir.full_path()}/src/*.c", f"{workspace_dir.full_path()}/src/Utils/*.c"]
         inc_path = f"{workspace_dir.full_path()}/inc"
 
         lib_path = f"{workspace_dir.full_path()}/lib/windows"
@@ -152,7 +152,7 @@ class Win:
                 os.mkdir(i)
         
         definitions = ["DEBUG"] if debug else None
-        additional_args = ["-g" if debug else None, "-O0" if debug else "-O3", "-Wall"] #, "-Wno-deprecated-declarations"]
+        additional_args = ["-g" if debug else None, "-O0" if debug else "-O3", "-Wall", "-fsanitize=address", "-fno-omit-frame-pointer"] #, "-Wno-deprecated-declarations"]
 
         cmd = build_cmd("clang", src_files, inc_path, out_path.full_path(), lib_path, libs, definitions, additional_args)
 

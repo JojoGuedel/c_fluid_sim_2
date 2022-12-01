@@ -195,15 +195,15 @@ class FluidField {
   }
 }
 
-final int SIZE = 100;
+final int SIZE = 50;
 final int ITER = 50;
-float scale = 5.0f;
+float scale = 20.0f;
 
-FluidField fluid = new FluidField(SIZE, ITER, 0.0001, 0.0001, 0.01);
+FluidField fluid = new FluidField(SIZE, ITER, 0.000001, 0.001, 0.01);
 
 void setup() {
   noStroke();
-  size(500, 500);
+  size(1000, 1000);
 }
 
 void draw() {
@@ -214,16 +214,22 @@ void draw() {
     s += fluid.density[i];
   }
   
-  println(s);
+  // println(s);
   
-  background(51);
+  background(255);
   for (int y = 0; y < fluid.size; y++) {
     for (int x = 0; x < fluid.size; x++) {
+      int i = fluid.IX(x, y);
       noStroke();
-      fill(255, 255, 255, fluid.density[fluid.IX(x, y)] / 10);
+      fill(0, 0, 0, fluid.density[i] / 10);
       rect(x * scale, y * scale, scale, scale);
-      stroke(0, 0, 255);
-      line(x * scale, y * scale, scale * (x + fluid.Vx[fluid.IX(x, y)]), scale * (y + fluid.Vy[fluid.IX(x, y)]));
+      
+      colorMode(HSB, 100);
+      float a = sqrt(pow(fluid.Vx[i], 2) + pow(fluid.Vy[i], 2));
+      strokeWeight(2);
+      stroke(a * 40, 100, 50);
+      line(x * scale, y * scale, scale * (x + fluid.Vx[i]), scale * (y + fluid.Vy[i]));
+      colorMode(RGB, 255);
     }
   }
 }
@@ -231,8 +237,8 @@ void draw() {
 void mouseDragged() {
   int x = int((float)mouseX / scale);
   int y = int((float)mouseY / scale);
-  float vx = (mouseX - pmouseX) * 5;
-  float vy = (mouseY - pmouseY) * 5;
+  float vx = (mouseX - pmouseX) * 2;
+  float vy = (mouseY - pmouseY) * 2;
   fluid.addDen(x, y, 1000);
   fluid.addVel(x, y, vx, vy);
 }

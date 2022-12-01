@@ -106,7 +106,7 @@ void setup() {
 }
 
 void draw() {
-  background(51);
+  background(255);
 
   // PVector pos = new PVector(20, 20);
   // PVector sPos = toScreen(pos);
